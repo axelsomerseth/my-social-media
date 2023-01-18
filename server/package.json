@@ -2,8 +2,8 @@
   "name": "mysocialmedia-server",
   "version": "1.0.0",
   "description": "My social media is a tool to share all your social media links in one single page website.",
-  "main": "./build/index./ts",
-  "private": "true",
+  "main": "./build/index.js",
+  "private": true,
   "engines": {
     "npm": ">=8.15.0",
     "node": ">=16.17.0"
@@ -19,6 +19,10 @@
     "typescript",
     "graphql"
   ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/axelsomerseth/mysocialmedia.git"
+  },
   "author": "Axel Somerseth Cordova <axelsomerseth@gmail.com>",
   "license": "MIT",
   "devDependencies": {
