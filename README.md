@@ -1,6 +1,6 @@
 # My Social Media
 
-> My social media is a tool made to share all your social media links.
+> My social media is a tool to share all your social media links in one single page website.
 
 ## Features
 
