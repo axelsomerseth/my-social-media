@@ -4,6 +4,7 @@
   "description": "My social media is a tool to share all your social media links in one single page website.",
   "main": "./build/index.js",
   "private": true,
+  "type": "commonjs",
   "engines": {
     "npm": ">=8.15.0",
     "node": ">=16.17.0"
@@ -12,6 +13,7 @@
     "start": "node ./build/index.js",
     "dev": "ts-node ./source/index.ts",
     "build": "npx tsc",
+    "build:declaration": "npx tsc --declaration",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [
