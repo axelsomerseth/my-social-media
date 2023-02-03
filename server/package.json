@@ -14,7 +14,9 @@
     "dev": "ts-node ./source/index.ts",
     "build": "npx tsc",
     "build:declaration": "npx tsc --declaration",
-    "test": "npx jest"
+    "test": "npx jest",
+    "mongodb": "brew services run mongodb-community",
+    "mongo": "mongosh"
   },
   "keywords": [
     "nodejs",
@@ -45,6 +47,7 @@
     "dotenv": "^16.0.3",
     "express": "^4.18.2",
     "helmet": "^6.0.1",
+    "mongodb": "^5.0.0",
     "morgan": "^1.10.0"
   }
 }
