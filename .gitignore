@@ -4,6 +4,9 @@
 # Typescript or JavaScript builds or distributables 
 /**/build
 
+# Test framework files
+/**/coverage
+
 # Environtment files
 .env
 .env.development
