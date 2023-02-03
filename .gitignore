@@ -1,2 +1,10 @@
+# Node dependencies
 /**/node_modules
+
+# Typescript or JavaScript builds or distributables 
 /**/build
+
+# Environtment files
+.env
+.env.development
+.env.production
