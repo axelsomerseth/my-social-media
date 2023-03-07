@@ -82,7 +82,7 @@ my-social-media> db.thumbnails.find()
 ### 13. Insert a document/record into `thumbnails` collection
 
 ```sh
-my-social-media> b.thumbnails.insertOne({
+my-social-media> db.thumbnails.insertOne({
 	imageURL: "https://picsum.photos/200/300",
 	videoURL: "https://picsum.photos/200/300",
 	altText: "This is an intro video",

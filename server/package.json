@@ -15,8 +15,11 @@
     "build": "npx tsc",
     "build:declaration": "npx tsc --declaration",
     "test": "npx jest",
-    "mongodb": "brew services run mongodb-community",
-    "mongo": "mongosh"
+    "mongodb:run": "brew services run mongodb-community",
+    "mongodb:stop": "brew services stop mongodb-community",
+    "mongodb:info": "brew services info mongodb-community",
+    "mongosh": "mongosh",
+    "test-db": "ts-node ./source/db/index.ts"
   },
   "keywords": [
     "nodejs",
