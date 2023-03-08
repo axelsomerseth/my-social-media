@@ -7,7 +7,7 @@ import Col from "react-bootstrap/Col";
 const Footer = () => {
   return (
     <footer>
-      <Navbar fixed="bottom" bg="light">
+      <Navbar fixed="bottom" bg="light" variant="light">
         <Container fluid className="justify-content-center">
           <Row>
             <Col>

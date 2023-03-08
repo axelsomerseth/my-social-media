@@ -2,13 +2,14 @@ import "./App.css";
 import { Routes, Route } from "react-router-dom";
 
 import Home from "./routes/Home";
+import Header from "./core/Header";
 import NotFound from "./routes/NotFound";
 import Footer from "./core/Footer";
 
 function App() {
   return (
     <>
-      <header>{/* <Navbar /> */}</header>
+      <Header />
       <main>
         <Routes>
           <Route path="/">
