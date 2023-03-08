@@ -1,9 +1,9 @@
 import "./App.css";
 import { Routes, Route } from "react-router-dom";
 
-import Home from "./app/routes/Home";
-import NotFound from "./app/routes/NotFound";
-import Footer from "./app/core/Footer";
+import Home from "./routes/Home";
+import NotFound from "./routes/NotFound";
+import Footer from "./core/Footer";
 
 function App() {
   return (
