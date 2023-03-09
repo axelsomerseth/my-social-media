@@ -12,7 +12,7 @@ const Footer = () => {
           <Row>
             <Col>
               <span className="text-muted">
-                Made with love remotely &#x1FAF6;
+                Crafted with curiosity &#x1F440;
               </span>
             </Col>
           </Row>

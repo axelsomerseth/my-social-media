@@ -1,0 +1,17 @@
+Test here: https://docs.github.com/en/graphql/overview/explorer
+Introspective: https://docs.github.com/en/graphql/guides/introduction-to-graphql#discovering-the-graphql-api
+
+query {
+  user(login: "CatherineVal") {
+    login
+    id
+    name
+    email
+    createdAt
+    avatarUrl
+    url
+    bio
+    company
+    location
+  }
+}
