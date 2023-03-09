@@ -1,31 +1,51 @@
-import React from "react";
+import React, { useState } from "react";
 import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
+import Spinner from "react-bootstrap/Spinner";
+import Alert from "react-bootstrap/Alert";
 import GithubUserForm from "./GithubUserForm";
 import GithubCard from "./GithubCard";
+import { If, Then } from "react-if";
 
-const user = {
-  login: "axelsomerseth",
-  id: "MDQ6VXNlcjE4NzQ2MjUx",
-  name: "Axel Somerseth Cordova",
-  email: "axelsomerseth@gmail.com",
-  createdAt: "2016-04-30T00:55:49Z",
-  avatarUrl:
-    "https://avatars.githubusercontent.com/u/18746251?u=516f95088986ab064c0fb701aed30e70e35a04f3&v=4",
-  url: "https://github.com/axelsomerseth",
-  bio: "🏋🏻\u200d♂️ • Healthy man.\r\n📚 • Always learning.\r\n💰 • Stocks and Bitcoin.\r\n👨🏻\u200d💻 • Software Engineer.\r\n🏆 • Friendly.\r\n🎒 • Camping and Exploration.",
-  company: null,
-  location: "Honduras",
-};
+import { useLazyQuery, gql } from "@apollo/client";
+
+const GET_GITHUB_USER = gql`
+  query GetUser($githubUsername: String!) {
+    user(login: $githubUsername) {
+      login
+      id
+      name
+      email
+      createdAt
+      avatarUrl
+      url
+      bio
+      company
+      location
+      websiteUrl
+    }
+  }
+`;
 
 const MyGithubDataLayout = () => {
+  const [githubUsername, setGithubUsername] = useState("");
+  const [fetchGithubUser, { loading, error, data }] = useLazyQuery(
+    GET_GITHUB_USER,
+    {
+      variables: { githubUsername },
+    }
+  );
+
   return (
     <>
       <Container>
         <Row>
           <Col>
-            <GithubUserForm />
+            <GithubUserForm
+              setGithubUsername={setGithubUsername}
+              fetchGithubUser={fetchGithubUser}
+            />
           </Col>
         </Row>
         <Row>
@@ -35,7 +55,24 @@ const MyGithubDataLayout = () => {
         </Row>
         <Row>
           <Col className="d-flex justify-content-center">
-            <GithubCard user={user} />
+            <If condition={data}>
+              <Then>
+                <GithubCard user={data?.user} />
+              </Then>
+            </If>
+            <If condition={loading}>
+              <Then>
+                <Spinner animation="border" variant="primary" />
+              </Then>
+            </If>
+            <If condition={error !== undefined}>
+              <Then>
+                <Alert key={"danger"} variant={"danger"}>
+                  <Alert.Heading>{error?.name}</Alert.Heading>
+                  <p>{error?.message}</p>
+                </Alert>
+              </Then>
+            </If>
           </Col>
         </Row>
       </Container>

@@ -5,12 +5,22 @@ import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 
-const GithubUserForm = () => {
-  const [githubUsername, setGithubUsername] = useState("");
+const GithubUserForm = ({ setGithubUsername, fetchGithubUser }) => {
+  const [input, setInput] = useState("");
+
+  const onInputChange = (event) => {
+    setInput(event.target.value);
+  };
 
   const onSubmit = (event) => {
     event.preventDefault();
-    console.log(githubUsername);
+    setGithubUsername(input);
+    fetchGithubUser();
+  };
+
+  const resetForm = (event) => {
+    event.preventDefault();
+    setInput("");
   };
 
   return (
@@ -24,17 +34,22 @@ const GithubUserForm = () => {
                 <Form.Control
                   type="text"
                   placeholder="Enter your GitHub username"
-                  value={githubUsername}
-                  onChange={(event) => setGithubUsername(event.target.value)}
+                  value={input}
+                  onChange={onInputChange}
                 />
                 <Form.Text className="text-muted">
-                  We will use your info to create a card.
+                  We will use your info to show a card below.
                 </Form.Text>
               </Form.Group>
             </Col>
-            <Col md={2} className="d-flex justify-content-center">
+            <Col md={1} className="d-flex justify-content-center">
               <Button variant="primary" type="submit" onClick={onSubmit}>
                 Submit
+              </Button>
+            </Col>
+            <Col md={1} className="d-flex justify-content-center">
+              <Button variant="secondary" type="submit" onClick={resetForm}>
+                Reset
               </Button>
             </Col>
           </Row>
