@@ -8,7 +8,7 @@ function MyGithubDataPage() {
   return (
     <Container fluid>
       <Row className="mt-3 mb-3">
-        <Col className="d-flex justify-content-center">
+        <Col>
           <MyGithubDataLayout />
         </Col>
       </Row>
