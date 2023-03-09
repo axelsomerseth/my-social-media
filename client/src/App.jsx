@@ -1,10 +1,10 @@
-import "./App.css";
 import { Routes, Route } from "react-router-dom";
 
 import Home from "./routes/Home";
 import Header from "./core/Header";
 import NotFound from "./routes/NotFound";
 import Footer from "./core/Footer";
+import MyGithubDataPage from "./routes/MyGithubDataPage";
 
 function App() {
   return (
@@ -14,6 +14,7 @@ function App() {
         <Routes>
           <Route path="/">
             <Route index element={<Home />} />
+            <Route path="my-github-data" element={<MyGithubDataPage />} />
             {/* <Route path="sign-up" element={<SignUpModal />} /> */}
             {/* <Route path="sign-in" element={<SignInModal />} /> */}
             {/* <Route path="links"> */}

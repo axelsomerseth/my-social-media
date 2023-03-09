@@ -3,7 +3,7 @@ import { Container, Row, Col } from "react-bootstrap";
 
 function Home() {
   return (
-    <Container>
+    <Container fluid>
       <Row className="mt-3 mb-3">
         <Col className="d-flex justify-content-center">
           <h1>Home</h1>

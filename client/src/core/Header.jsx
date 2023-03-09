@@ -12,7 +12,7 @@ function Header() {
     <header>
       <Navbar bg="dark" variant="dark" expand="lg">
         <Container>
-          <Navbar.Brand href="#home">
+          <Navbar.Brand href="/">
             <img
               alt=""
               src={logo}
@@ -27,15 +27,15 @@ function Header() {
             <Nav className="me-auto">
               {/* <Nav.Link href="#home">Home</Nav.Link> */}
               <NavDropdown title="Menu" id="basic-nav-dropdown">
-                <NavDropdown.Item href="#action/3.1">My Links</NavDropdown.Item>
-                <NavDropdown.Item href="#action/3.2">
+                <NavDropdown.Item href="/my-links">My Links</NavDropdown.Item>
+                <NavDropdown.Item href="/my-thumbnails-data">
                   My Thumbnails
                 </NavDropdown.Item>
-                <NavDropdown.Item href="#action/3.3">
+                <NavDropdown.Item href="/my-github-data">
                   My Github Data
                 </NavDropdown.Item>
                 <NavDropdown.Divider />
-                <NavDropdown.Item href="#action/3.4">About</NavDropdown.Item>
+                <NavDropdown.Item href="/about">About</NavDropdown.Item>
               </NavDropdown>
             </Nav>
           </Navbar.Collapse>
