@@ -2,10 +2,9 @@ import Container from "react-bootstrap/Container";
 import Nav from "react-bootstrap/Nav";
 import Navbar from "react-bootstrap/Navbar";
 import NavDropdown from "react-bootstrap/NavDropdown";
-
-// import { Link } from "react-router-dom";
 import AppConfig from "../config";
 import logo from "../logo.svg";
+// import ColorSchemeToggle from "./ColorSchemeToggle";
 
 function Header() {
   return (
@@ -38,6 +37,7 @@ function Header() {
                 <NavDropdown.Item href="/about">About</NavDropdown.Item>
               </NavDropdown>
             </Nav>
+            {/* <ColorSchemeToggle /> */}
           </Navbar.Collapse>
         </Container>
       </Navbar>
