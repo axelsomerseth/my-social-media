@@ -1,9 +1,13 @@
+import React from "react";
 import Container from "react-bootstrap/Container";
+import Row from "react-bootstrap/Row";
+import Col from "react-bootstrap/Col";
 import Nav from "react-bootstrap/Nav";
 import Navbar from "react-bootstrap/Navbar";
 import NavDropdown from "react-bootstrap/NavDropdown";
 import AppConfig from "../config";
 import logo from "../logo.svg";
+import { Link } from "react-router-dom";
 // import ColorSchemeToggle from "./ColorSchemeToggle";
 
 function Header() {
@@ -37,6 +41,21 @@ function Header() {
                 <NavDropdown.Item href="/about">About</NavDropdown.Item>
               </NavDropdown>
             </Nav>
+            <Container>
+              <Row className="justify-content-end">
+                <Col
+                  md={3}
+                  className="d-flex justify-content-md-center justify-content-sm-start"
+                >
+                  <Link className="btn btn-success me-2" to="sign-in">
+                    Sign in
+                  </Link>
+                  <Link className="btn btn-secondary" to="sign-up">
+                    Sign up
+                  </Link>
+                </Col>
+              </Row>
+            </Container>
             {/* <ColorSchemeToggle /> */}
           </Navbar.Collapse>
         </Container>
