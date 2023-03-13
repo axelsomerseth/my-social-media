@@ -9,6 +9,7 @@ import SignUpModal from "./components/auth/SignUpModal";
 import SignInModal from "./components/auth/SignInModal";
 import FindGithubUser from "./routes/FindGithubUser";
 import MyGithubDataPage from "./routes/MyGithubDataPage";
+import MyFacebookDataPage from "./routes/MyFacebookDataPage";
 import RedirectPage from "./routes/RedirectPage";
 
 import { MantineProvider, ColorSchemeProvider } from "@mantine/core";
@@ -40,6 +41,10 @@ function App() {
                 <Route index element={<Home />} />
                 <Route path="find-github-user" element={<FindGithubUser />} />
                 <Route path="my-github-data" element={<MyGithubDataPage />} />
+                <Route
+                  path="my-facebook-data"
+                  element={<MyFacebookDataPage />}
+                />
                 <Route path="sign-up" element={<SignUpModal />} />
                 <Route path="sign-in" element={<SignInModal />} />
                 <Route path="oauth">

@@ -6,6 +6,7 @@ import Form from "react-bootstrap/Form";
 import Container from "react-bootstrap/Container";
 import Col from "react-bootstrap/Col";
 import Row from "react-bootstrap/Row";
+import FacebookLogin from "./FacebookLogin";
 
 const GITHUB_CLIENT_ID = process.env.REACT_APP_GITHUB_CLIENT_ID;
 const GITHUB_REDIRECT_URI = process.env.REACT_APP_GITHUB_REDIRECT_URI;
@@ -74,7 +75,7 @@ const SignInModal = () => {
             </Col>
           </Row>
           <hr />
-          <Row>
+          <Row className="mb-2">
             <Col className="d-flex justify-content-center">
               <a
                 className="btn btn-secondary"
@@ -82,6 +83,11 @@ const SignInModal = () => {
               >
                 Login with GitHub
               </a>
+            </Col>
+          </Row>
+          <Row className="mb-2">
+            <Col className="d-flex justify-content-center">
+              <FacebookLogin />
             </Col>
           </Row>
         </Container>

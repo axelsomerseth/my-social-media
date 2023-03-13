@@ -39,6 +39,9 @@ function Header() {
                 <NavDropdown.Item href="/find-github-user">
                   Find GitHub User
                 </NavDropdown.Item>
+                <NavDropdown.Item href="/my-facebook-data">
+                  Find Facebook Data
+                </NavDropdown.Item>
                 <NavDropdown.Divider />
                 <NavDropdown.Item href="/about">About</NavDropdown.Item>
               </NavDropdown>

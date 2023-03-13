@@ -21,7 +21,7 @@ const Redirect = () => {
       .then((data) => {
         getGithubUser(data.access_token)
           .then((githubUser) => {
-            setUser(githubUser);
+            setUser({ ...githubUser, identityProvider: "GitHub" });
             setIsLoading(false);
             navigate("/my-github-data");
           })
