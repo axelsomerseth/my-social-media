@@ -1,82 +1,63 @@
-import React, { useState } from "react";
+import React, { useContext } from "react";
 import Container from "react-bootstrap/Container";
-import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
-import Spinner from "react-bootstrap/Spinner";
+import Row from "react-bootstrap/Row";
+import Card from "react-bootstrap/Card";
+import ListGroup from "react-bootstrap/ListGroup";
 import Alert from "react-bootstrap/Alert";
-import GithubUserForm from "./GithubUserForm";
-import GithubCard from "./GithubCard";
-import { If, Then } from "react-if";
-
-import { useLazyQuery, gql } from "@apollo/client";
-
-const GET_GITHUB_USER = gql`
-  query GetUser($githubUsername: String!) {
-    user(login: $githubUsername) {
-      login
-      id
-      name
-      email
-      createdAt
-      avatarUrl
-      url
-      bio
-      company
-      location
-      websiteUrl
-    }
-  }
-`;
+import { UserContext } from "../../index";
 
 const MyGithubDataLayout = () => {
-  const [githubUsername, setGithubUsername] = useState("");
-  const [fetchGithubUser, { loading, error, data }] = useLazyQuery(
-    GET_GITHUB_USER,
-    {
-      variables: { githubUsername },
-    }
-  );
+  const { user } = useContext(UserContext);
 
   return (
-    <>
-      <Container>
-        <Row>
-          <Col>
-            <GithubUserForm
-              setGithubUsername={setGithubUsername}
-              fetchGithubUser={fetchGithubUser}
-            />
-          </Col>
-        </Row>
-        <Row>
-          <Col>
-            <hr />
-          </Col>
-        </Row>
-        <Row>
-          <Col className="d-flex justify-content-center">
-            <If condition={data}>
-              <Then>
-                <GithubCard user={data?.user} />
-              </Then>
-            </If>
-            <If condition={loading}>
-              <Then>
-                <Spinner animation="border" variant="primary" />
-              </Then>
-            </If>
-            <If condition={error !== undefined}>
-              <Then>
-                <Alert key={"danger"} variant={"danger"}>
-                  <Alert.Heading>{error?.name}</Alert.Heading>
-                  <p>{error?.message}</p>
-                </Alert>
-              </Then>
-            </If>
-          </Col>
-        </Row>
-      </Container>
-    </>
+    <Container>
+      <Row>
+        <Col className="d-flex justify-content-center">
+          {user ? (
+            <Card style={{ width: "18rem" }}>
+              <Card.Img variant="top" src={user.avatar_url} />
+              <Card.Body>
+                <Card.Title>{user.name}</Card.Title>
+                <Card.Subtitle className="mb-2 text-muted">
+                  {"@" + user.login}
+                </Card.Subtitle>
+                <Card.Text>{user.bio}</Card.Text>
+                <ListGroup className="mb-3">
+                  <ListGroup.Item>Followers: {user.followers}</ListGroup.Item>
+                  <ListGroup.Item>Following: {user.following}</ListGroup.Item>
+                  <ListGroup.Item>
+                    Public Repos: {user.public_repos}
+                  </ListGroup.Item>
+                </ListGroup>
+                <a
+                  className="btn btn-success"
+                  href={user.html_url}
+                  target="_blank"
+                  rel="noreferrer"
+                >
+                  View profile on GitHub
+                </a>
+                <p></p>
+                <a
+                  className="btn btn-secondary"
+                  href={user.blog}
+                  target="_blank"
+                  rel="noreferrer"
+                >
+                  View Website
+                </a>
+              </Card.Body>
+            </Card>
+          ) : (
+            <Alert variant={"danger"}>
+              <Alert.Heading>Error</Alert.Heading>
+              No user found.
+            </Alert>
+          )}
+        </Col>
+      </Row>
+    </Container>
   );
 };
 

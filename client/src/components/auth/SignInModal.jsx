@@ -3,6 +3,12 @@ import { useNavigate } from "react-router-dom";
 import Button from "react-bootstrap/Button";
 import Modal from "react-bootstrap/Modal";
 import Form from "react-bootstrap/Form";
+import Container from "react-bootstrap/Container";
+import Col from "react-bootstrap/Col";
+import Row from "react-bootstrap/Row";
+
+const GITHUB_CLIENT_ID = process.env.REACT_APP_GITHUB_CLIENT_ID;
+const GITHUB_REDIRECT_URI = process.env.REACT_APP_GITHUB_REDIRECT_URI;
 
 const SignInModal = () => {
   const [show, setShow] = useState(false);
@@ -34,34 +40,51 @@ const SignInModal = () => {
         <Modal.Title>Sign in to your account</Modal.Title>
       </Modal.Header>
       <Modal.Body>
-        <Form id="signInForm">
-          <Form.Group className="mb-3" controlId="signInUsername">
-            <Form.Label>Username (Email address)</Form.Label>
-            <Form.Control
-              type="email"
-              placeholder="Enter your Username"
-              value={username}
-              onChange={(e) => setUsername(e.target.value)}
-              required
-            />
-            <Form.Text className="text-muted">
-              We'll never share your email with anyone else.
-            </Form.Text>
-          </Form.Group>
-          <Form.Group className="mb-3" controlId="signInPassword">
-            <Form.Label>Password</Form.Label>
-            <Form.Control
-              type="password"
-              placeholder="Enter your Password"
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
-              required
-            />
-          </Form.Group>
-          {/* <Form.Group className="mb-3" controlId="signInCheckbox"> */}
-          {/* <Form.Check type="checkbox" label="Remember me" /> */}
-          {/* </Form.Group> */}
-        </Form>
+        <Container>
+          <Row>
+            <Col>
+              <Form id="signInForm">
+                <Form.Group className="mb-3" controlId="signInUsername">
+                  <Form.Label>Username (Email address)</Form.Label>
+                  <Form.Control
+                    type="email"
+                    placeholder="Enter your Username"
+                    value={username}
+                    onChange={(e) => setUsername(e.target.value)}
+                    required
+                  />
+                  <Form.Text className="text-muted">
+                    We'll never share your email with anyone else.
+                  </Form.Text>
+                </Form.Group>
+                <Form.Group className="mb-3" controlId="signInPassword">
+                  <Form.Label>Password</Form.Label>
+                  <Form.Control
+                    type="password"
+                    placeholder="Enter your Password"
+                    value={password}
+                    onChange={(e) => setPassword(e.target.value)}
+                    required
+                  />
+                </Form.Group>
+                {/* <Form.Group className="mb-3" controlId="signInCheckbox"> */}
+                {/* <Form.Check type="checkbox" label="Remember me" /> */}
+                {/* </Form.Group> */}
+              </Form>
+            </Col>
+          </Row>
+          <hr />
+          <Row>
+            <Col className="d-flex justify-content-center">
+              <a
+                className="btn btn-secondary"
+                href={`https://github.com/login/oauth/authorize?client_id=${GITHUB_CLIENT_ID}&redirect_uri=${GITHUB_REDIRECT_URI}`}
+              >
+                Login with GitHub
+              </a>
+            </Col>
+          </Row>
+        </Container>
       </Modal.Body>
       <Modal.Footer>
         <Button variant="secondary" onClick={handleClose}>

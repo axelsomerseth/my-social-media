@@ -28,7 +28,6 @@ function Header() {
           <Navbar.Toggle aria-controls="basic-navbar-nav" />
           <Navbar.Collapse id="basic-navbar-nav">
             <Nav className="me-auto">
-              {/* <Nav.Link href="#home">Home</Nav.Link> */}
               <NavDropdown title="Menu" id="basic-nav-dropdown">
                 <NavDropdown.Item href="/my-links">My Links</NavDropdown.Item>
                 <NavDropdown.Item href="/my-thumbnails-data">
@@ -36,6 +35,9 @@ function Header() {
                 </NavDropdown.Item>
                 <NavDropdown.Item href="/my-github-data">
                   My Github Data
+                </NavDropdown.Item>
+                <NavDropdown.Item href="/find-github-user">
+                  Find GitHub User
                 </NavDropdown.Item>
                 <NavDropdown.Divider />
                 <NavDropdown.Item href="/about">About</NavDropdown.Item>

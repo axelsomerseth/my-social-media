@@ -1,12 +1,18 @@
-import path from "path";
 import express, { Express } from "express";
 import cors from "cors";
 import logger from "morgan";
 import compression from "compression";
 import helmet from "helmet";
 
+// fix __dirname error
+import path from "path";
+import { fileURLToPath } from "url";
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
+
 // TODO: import routes
 import indexRouter from "./routes/index";
+import oauthRouter from "./routes/oauth";
 
 // Creating Express application.
 const app: Express = express();
@@ -21,6 +27,7 @@ app.use(helmet()); // 3rd party plugin: secure your Express apps by setting vari
 
 // TODO: Define routes
 app.use("/", indexRouter);
+app.use("/login", oauthRouter);
 // app.use("/users", usersRouter);
 // app.use("/links", linksRouter);
 

@@ -6,7 +6,8 @@
     "target": "es2016",
 
     /* Modules */
-    "module": "CommonJS",
+    "module": "ES2020",
+    "moduleResolution": "node",
     /* JavaScript Support */
 
     /* Emit */
@@ -34,5 +35,9 @@
     // "skipDefaultLibCheck": true,
     "skipLibCheck": true
   },
-  "include": ["./source", "__mocks__"]
+  "include": ["./source", "__mocks__"],
+  "ts-node": {
+    "esm": true,
+    "experimentalSpecifierResolution": "node"
+  }
 }

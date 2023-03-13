@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, createContext } from "react";
 import ReactDOM from "react-dom/client";
 import reportWebVitals from "./reportWebVitals";
 import { BrowserRouter } from "react-router-dom";
@@ -23,15 +23,19 @@ const client = new ApolloClient({
   },
 });
 
+export const UserContext = createContext();
+
 const root = ReactDOM.createRoot(document.getElementById("root"));
 
 function Index() {
   const [colorScheme, setColorScheme] = useState("light");
+  const [user, setUser] = useState(null);
+
   const toggleColorScheme = (value) =>
     setColorScheme(value || (colorScheme === "dark" ? "light" : "dark"));
 
   return (
-    <React.StrictMode>
+    <UserContext.Provider value={{ user, setUser }}>
       <ApolloProvider client={client}>
         <ColorSchemeProvider
           colorScheme={colorScheme}
@@ -48,7 +52,7 @@ function Index() {
           </MantineProvider>
         </ColorSchemeProvider>
       </ApolloProvider>
-    </React.StrictMode>
+    </UserContext.Provider>
   );
 }
 

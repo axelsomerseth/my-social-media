@@ -1,8 +1,7 @@
 import React from "react";
-import Button from "react-bootstrap/Button";
 import Card from "react-bootstrap/Card";
 
-const GithubCard = ({ user }) => {
+const GithubUserCard = ({ user }) => {
   return (
     <>
       <Card style={{ width: "18rem" }}>
@@ -13,17 +12,27 @@ const GithubCard = ({ user }) => {
             {"@" + user.login}
           </Card.Subtitle>
           <Card.Text>{user.bio}</Card.Text>
-          <Button variant="success" href={user.url}>
+          <a
+            className="btn btn-success"
+            href={user.url}
+            target="_blank"
+            rel="noreferrer"
+          >
             View profile on GitHub
-          </Button>
+          </a>
           <p></p>
-          <Button variant="secondary" href={user.websiteUrl}>
+          <a
+            className="btn btn-secondary"
+            href={user.websiteUrl}
+            target="_blank"
+            rel="noreferrer"
+          >
             View Website
-          </Button>
+          </a>
         </Card.Body>
       </Card>
     </>
   );
 };
 
-export default GithubCard;
+export default GithubUserCard;
