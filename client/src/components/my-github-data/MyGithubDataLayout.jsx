@@ -5,10 +5,11 @@ import Row from "react-bootstrap/Row";
 import Card from "react-bootstrap/Card";
 import ListGroup from "react-bootstrap/ListGroup";
 import Alert from "react-bootstrap/Alert";
-import { UserContext } from "../../index";
+import { UserContext } from "../../App";
 
 const MyGithubDataLayout = () => {
   const { user } = useContext(UserContext);
+  console.log(user);
 
   return (
     <Container>

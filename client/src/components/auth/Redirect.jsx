@@ -6,7 +6,7 @@ import Spinner from "react-bootstrap/Spinner";
 import Alert from "react-bootstrap/Alert";
 import { useSearchParams, useNavigate } from "react-router-dom";
 import { getAccessToken, getGithubUser } from "../../services/OAuth/GitHub";
-import { UserContext } from "../../index";
+import { UserContext } from "../../App";
 
 const Redirect = () => {
   const { setUser } = useContext(UserContext);
@@ -21,7 +21,6 @@ const Redirect = () => {
       .then((data) => {
         getGithubUser(data.access_token)
           .then((githubUser) => {
-            console.log(githubUser);
             setUser(githubUser);
             setIsLoading(false);
             navigate("/my-github-data");
@@ -33,26 +32,22 @@ const Redirect = () => {
   }, []);
 
   return (
-    <>
-      <Container className="mt-5 mb-5">
-        <Row>
-          <Col className="d-flex justify-content-center">
-            {isLoading && <Spinner animation="border" variant="primary" />}
-          </Col>
-        </Row>
-        <Row className="mt-3 mb-3">
-          <Col className="d-flex justify-content-center">
-            {isLoading && (
-              <Alert variant={"primary"}>
-                <Alert.Heading>
-                  Loading your GitHub profile data...
-                </Alert.Heading>
-              </Alert>
-            )}
-          </Col>
-        </Row>
-      </Container>
-    </>
+    <Container className="mt-5 mb-5">
+      <Row>
+        <Col className="d-flex justify-content-center">
+          {isLoading && <Spinner animation="border" variant="primary" />}
+        </Col>
+      </Row>
+      <Row className="mt-3 mb-3">
+        <Col className="d-flex justify-content-center">
+          {isLoading && (
+            <Alert variant={"primary"}>
+              <Alert.Heading>Loading your GitHub profile data...</Alert.Heading>
+            </Alert>
+          )}
+        </Col>
+      </Row>
+    </Container>
   );
 };
 
