@@ -33,14 +33,14 @@ function Header() {
                 <NavDropdown.Item href="/my-thumbnails-data">
                   My Thumbnails
                 </NavDropdown.Item>
-                <NavDropdown.Item href="/my-github-data">
-                  My Github Data
-                </NavDropdown.Item>
                 <NavDropdown.Item href="/find-github-user">
                   Find GitHub User
                 </NavDropdown.Item>
+                <NavDropdown.Item href="/my-github-data">
+                  My Github Data
+                </NavDropdown.Item>
                 <NavDropdown.Item href="/my-facebook-data">
-                  Find Facebook Data
+                  My Facebook Data
                 </NavDropdown.Item>
                 <NavDropdown.Divider />
                 <NavDropdown.Item href="/about">About</NavDropdown.Item>
