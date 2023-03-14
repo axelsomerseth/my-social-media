@@ -9,7 +9,6 @@ import { UserContext } from "../../App";
 
 const MyGithubDataLayout = () => {
   const { user } = useContext(UserContext);
-  console.log(user);
 
   return (
     <Container>

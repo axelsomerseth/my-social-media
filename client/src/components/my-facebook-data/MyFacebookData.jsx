@@ -1,36 +1,50 @@
-import React, { useContext, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import Container from "react-bootstrap/Container";
 import Col from "react-bootstrap/Col";
 import Row from "react-bootstrap/Row";
 import Card from "react-bootstrap/Card";
 import ListGroup from "react-bootstrap/ListGroup";
 import Alert from "react-bootstrap/Alert";
+import Spinner from "react-bootstrap/Spinner";
 import { UserContext } from "../../App";
 
 const MyFacebookData = () => {
   const { user, setUser } = useContext(UserContext);
-  console.log(user);
+  const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
     window.FB.getLoginStatus(function (response) {
-      console.log(response);
-    });
-    window.FB.api(
-      "/me",
-      {
-        fields:
-          "id,name,birthday,email,gender,hometown,location,about,picture,link",
-      },
-      function (response) {
-        console.log(response);
-        setUser({
-          ...response,
-          identityProvider: "Facebook",
-        });
+      if (response.status === "connected") {
+        window.FB.api(
+          "/me",
+          {
+            fields:
+              "id,name,birthday,email,gender,hometown,location,about,picture,link",
+          },
+          function (response) {
+            setUser({
+              ...response,
+              identityProvider: "Facebook",
+            });
+          }
+        );
       }
-    );
+      setIsLoading(false);
+    });
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
+
+  if (isLoading) {
+    return (
+      <Container>
+        <Row>
+          <Col className="d-flex justify-content-center">
+            <Spinner animation="border" variant="dark" />
+          </Col>
+        </Row>
+      </Container>
+    );
+  }
 
   return (
     <Container>

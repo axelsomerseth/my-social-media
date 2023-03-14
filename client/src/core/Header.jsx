@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useContext } from "react";
 import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
@@ -7,10 +7,30 @@ import Navbar from "react-bootstrap/Navbar";
 import NavDropdown from "react-bootstrap/NavDropdown";
 import AppConfig from "../config";
 import logo from "../logo.svg";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import { UserContext } from "../App";
+import { Button } from "react-bootstrap";
 // import ColorSchemeToggle from "./ColorSchemeToggle";
 
 function Header() {
+  const navigation = useNavigate();
+  const { user, setUser } = useContext(UserContext);
+
+  const handleSignOut = () => {
+    // Remove user from local storage to log user out.
+    if (user.identityProvider === "Facebook") {
+      window.FB.getLoginStatus(function (response) {
+        if (response.status === "connected") {
+          window.FB.logout();
+        }
+      });
+    }
+
+    setUser(null);
+    localStorage.removeItem("user");
+    navigation("/");
+  };
+
   return (
     <header>
       <Navbar bg="dark" variant="dark" expand="lg">
@@ -48,17 +68,28 @@ function Header() {
             </Nav>
             <Container>
               <Row className="justify-content-end">
-                <Col
-                  md={3}
-                  className="d-flex justify-content-md-center justify-content-sm-start"
-                >
-                  <Link className="btn btn-success me-2" to="sign-in">
-                    Sign in
-                  </Link>
-                  <Link className="btn btn-secondary" to="sign-up">
-                    Sign up
-                  </Link>
-                </Col>
+                {!user ? (
+                  <Col
+                    md={3}
+                    className="d-flex justify-content-md-center justify-content-sm-start"
+                  >
+                    <Link className="btn btn-success me-2" to="sign-in">
+                      Sign in
+                    </Link>
+                    <Link className="btn btn-secondary" to="sign-up">
+                      Sign up
+                    </Link>
+                  </Col>
+                ) : (
+                  <Col
+                    md={3}
+                    className="d-flex justify-content-md-center justify-content-sm-start"
+                  >
+                    <Button variant="warning" onClick={handleSignOut}>
+                      Sign out
+                    </Button>
+                  </Col>
+                )}
               </Row>
             </Container>
             {/* <ColorSchemeToggle /> */}

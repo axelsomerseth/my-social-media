@@ -25,6 +25,7 @@ const SignInModal = () => {
     console.log("TODO: Log in");
     console.log(`Username: ${username}, Password: ${password}`);
     // TODO: log in and close modal on success and show the error on error
+    navigate("/");
   };
 
   useEffect(() => {

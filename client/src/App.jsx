@@ -1,4 +1,4 @@
-import React, { useState, createContext } from "react";
+import React, { useState, useEffect, createContext } from "react";
 import { Routes, Route } from "react-router-dom";
 
 import Home from "./routes/Home";
@@ -11,6 +11,7 @@ import FindGithubUser from "./routes/FindGithubUser";
 import MyGithubDataPage from "./routes/MyGithubDataPage";
 import MyFacebookDataPage from "./routes/MyFacebookDataPage";
 import RedirectPage from "./routes/RedirectPage";
+import useLocalStorage from "./lib/auth/hooks/use-local-storage";
 
 import { MantineProvider, ColorSchemeProvider } from "@mantine/core";
 
@@ -19,9 +20,28 @@ export const UserContext = createContext();
 function App() {
   const [colorScheme, setColorScheme] = useState("light");
   const [user, setUser] = useState(null);
+  const [userPersisted, setUserPersisted] = useLocalStorage("user", null);
 
   const toggleColorScheme = (value) =>
     setColorScheme(value || (colorScheme === "dark" ? "light" : "dark"));
+
+  // On mount.
+  useEffect(() => {
+    // User data is persisted in local storage.
+    if (userPersisted) {
+      setUser(() => userPersisted);
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
+  // Refreshing when 'user' and 'userPersisted' change.
+  useEffect(() => {
+    // User signed in.
+    if (user) {
+      setUserPersisted(() => user);
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [user]);
 
   return (
     <UserContext.Provider value={{ user, setUser }}>
