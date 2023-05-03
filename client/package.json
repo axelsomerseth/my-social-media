@@ -1,7 +1,14 @@
 {
   "name": "my-social-media-client",
   "version": "0.1.0",
+  "description": "My Social Media React App.",
   "private": true,
+  "scripts": {
+    "start": "HTTPS=true react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test",
+    "eject": "react-scripts eject"
+  },
   "dependencies": {
     "@apollo/client": "^3.7.10",
     "@emotion/react": "^11.10.6",
@@ -21,12 +28,6 @@
     "react-router-dom": "^6.8.2",
     "react-scripts": "5.0.1",
     "web-vitals": "^2.1.4"
-  },
-  "scripts": {
-    "start": "HTTPS=true react-scripts start",
-    "build": "react-scripts build",
-    "test": "react-scripts test",
-    "eject": "react-scripts eject"
   },
   "eslintConfig": {
     "extends": [

@@ -13,6 +13,7 @@ const __dirname = path.dirname(__filename);
 // TODO: import routes
 import indexRouter from "./routes/index";
 import oauthRouter from "./routes/oauth";
+import tracksRouter from "./routes/tracks";
 
 // Creating Express application.
 const app: Express = express();
@@ -28,6 +29,7 @@ app.use(helmet()); // 3rd party plugin: secure your Express apps by setting vari
 // TODO: Define routes
 app.use("/", indexRouter);
 app.use("/login", oauthRouter);
+app.use("/tracks", tracksRouter);
 // app.use("/users", usersRouter);
 // app.use("/links", linksRouter);
 
