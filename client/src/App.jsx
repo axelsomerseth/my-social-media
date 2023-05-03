@@ -14,6 +14,7 @@ import RedirectPage from "./routes/RedirectPage";
 import useLocalStorage from "./lib/auth/hooks/use-local-storage";
 
 import { MantineProvider, ColorSchemeProvider } from "@mantine/core";
+import ListTracks from "./components/tracks/ListTracks";
 
 export const UserContext = createContext();
 
@@ -59,6 +60,7 @@ function App() {
             <Routes>
               <Route path="/">
                 <Route index element={<Home />} />
+                <Route path="tracks" element={<ListTracks />} />
                 <Route path="find-github-user" element={<FindGithubUser />} />
                 <Route path="my-github-data" element={<MyGithubDataPage />} />
                 <Route

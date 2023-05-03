@@ -62,6 +62,9 @@ function Header() {
                 <NavDropdown.Item href="/my-facebook-data">
                   My Facebook Data
                 </NavDropdown.Item>
+                <NavDropdown.Item href="/tracks">
+                  Recommended Tracks
+                </NavDropdown.Item>
                 <NavDropdown.Divider />
                 <NavDropdown.Item href="/about">About</NavDropdown.Item>
               </NavDropdown>
