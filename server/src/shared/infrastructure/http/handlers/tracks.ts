@@ -1,5 +1,5 @@
 import { RequestHandler, Request, Response } from "express";
-import { getRecommendations } from "../services/spotify";
+import { getRecommendations } from "../../../providers/music/spotify";
 
 const listRecommendations: RequestHandler = async (
   req: Request,

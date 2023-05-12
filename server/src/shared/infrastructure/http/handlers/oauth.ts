@@ -1,5 +1,5 @@
 import { RequestHandler, Request, Response } from "express";
-import { getAccessToken } from "../services/github";
+import { getAccessToken } from "../../../providers/oauth/github";
 
 interface AccessToken {
   access_token?: string;
@@ -16,18 +16,22 @@ const getGithubAccessToken: RequestHandler = async (
   const clientSecret = client_secret as string;
   const authorizationCode = code as string;
 
-  const data = (await getAccessToken(
-    clientId as string,
-    clientSecret,
-    authorizationCode
-  )) as AccessToken;
+  try {
+    const data = (await getAccessToken(
+      clientId as string,
+      clientSecret,
+      authorizationCode
+    )) as AccessToken;
 
-  res.status(200);
-  res.json({
-    access_token: data?.access_token,
-    token_type: data?.token_type,
-    scope: data?.token_type,
-  });
+    res.status(200);
+    res.json({
+      access_token: data?.access_token,
+      token_type: data?.token_type,
+      scope: data?.token_type,
+    });
+  } catch (error) {
+    res.status(401).end();
+  }
 };
 
 export { getGithubAccessToken };
