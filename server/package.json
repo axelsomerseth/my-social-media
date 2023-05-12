@@ -11,7 +11,7 @@
   },
   "scripts": {
     "start": "node ./build/index.js",
-    "dev": "ts-node ./source/index.ts",
+    "dev": "ts-node ./src/shared/infrastructure/http/server.ts",
     "build": "npx tsc",
     "build:declaration": "npx tsc --declaration",
     "test": "npx jest",
