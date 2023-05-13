@@ -7,30 +7,15 @@ import ListGroup from "react-bootstrap/ListGroup";
 import Alert from "react-bootstrap/Alert";
 import Spinner from "react-bootstrap/Spinner";
 import { UserContext } from "../../App";
+import { getFacebookProfileData } from "../../shared/providers/oauth/facebook";
 
 const MyFacebookData = () => {
   const { user, setUser } = useContext(UserContext);
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
-    window.FB.getLoginStatus(function (response) {
-      if (response.status === "connected") {
-        window.FB.api(
-          "/me",
-          {
-            fields:
-              "id,name,birthday,email,gender,hometown,location,about,picture,link",
-          },
-          function (response) {
-            setUser({
-              ...response,
-              identityProvider: "Facebook",
-            });
-          }
-        );
-      }
-      setIsLoading(false);
-    });
+    getFacebookProfileData(setUser);
+    setIsLoading(false);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 

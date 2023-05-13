@@ -2,9 +2,9 @@ import React, { useState, useEffect, createContext } from "react";
 import { Routes, Route } from "react-router-dom";
 
 import Home from "./routes/Home";
-import Header from "./core/Header";
 import NotFound from "./routes/NotFound";
-import Footer from "./core/Footer";
+import AppHeader from "./shared/components/AppHeader";
+import AppFooter from "./shared/components/AppFooter";
 import SignUpModal from "./components/auth/SignUpModal";
 import SignInModal from "./components/auth/SignInModal";
 import FindGithubUser from "./routes/FindGithubUser";
@@ -55,7 +55,7 @@ function App() {
           withGlobalStyles
           withNormalizeCSS
         >
-          <Header />
+          <AppHeader />
           <main>
             <Routes>
               <Route path="/">
@@ -81,7 +81,7 @@ function App() {
               </Route>
             </Routes>
           </main>
-          <Footer />
+          <AppFooter />
         </MantineProvider>
       </ColorSchemeProvider>
     </UserContext.Provider>

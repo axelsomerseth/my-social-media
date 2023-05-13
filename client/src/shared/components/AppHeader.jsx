@@ -5,30 +5,51 @@ import Col from "react-bootstrap/Col";
 import Nav from "react-bootstrap/Nav";
 import Navbar from "react-bootstrap/Navbar";
 import NavDropdown from "react-bootstrap/NavDropdown";
-import AppConfig from "../config";
-import logo from "../logo.svg";
+import AppConfig from "../../config/config";
+import logo from "../../logo.svg";
 import { Link, useNavigate } from "react-router-dom";
-import { UserContext } from "../App";
+import { UserContext } from "../../App";
 import { Button } from "react-bootstrap";
+import { handleFacebookLogout } from "../providers/oauth/facebook";
 // import ColorSchemeToggle from "./ColorSchemeToggle";
 
-function Header() {
+function AppHeader() {
   const navigation = useNavigate();
   const { user, setUser } = useContext(UserContext);
 
   const handleSignOut = () => {
     // Remove user from local storage to log user out.
     if (user.identityProvider === "Facebook") {
-      window.FB.getLoginStatus(function (response) {
-        if (response.status === "connected") {
-          window.FB.logout();
-        }
-      });
+      handleFacebookLogout();
     }
 
     setUser(null);
     localStorage.removeItem("user");
     navigation("/");
+  };
+
+  const getLogoutButton = () => {
+    switch (user.identityProvider) {
+      case "Facebook":
+        return (
+          <Button variant="warning" onClick={handleSignOut}>
+            Logout from Facebook
+          </Button>
+        );
+      case "GitHub":
+        return (
+          <Button variant="warning" onClick={handleSignOut}>
+            Logout from GitHub
+          </Button>
+        );
+
+      default:
+        return (
+          <Button variant="warning" onClick={handleSignOut}>
+            Sign out
+          </Button>
+        );
+    }
   };
 
   return (
@@ -56,12 +77,17 @@ function Header() {
                 <NavDropdown.Item href="/find-github-user">
                   Find GitHub User
                 </NavDropdown.Item>
-                <NavDropdown.Item href="/my-github-data">
-                  My Github Data
-                </NavDropdown.Item>
-                <NavDropdown.Item href="/my-facebook-data">
-                  My Facebook Data
-                </NavDropdown.Item>
+
+                {user && user.identityProvider === "GitHub" && (
+                  <NavDropdown.Item href="/my-github-data">
+                    My Github Data
+                  </NavDropdown.Item>
+                )}
+                {user && user.identityProvider === "Facebook" && (
+                  <NavDropdown.Item href="/my-facebook-data">
+                    My Facebook Data
+                  </NavDropdown.Item>
+                )}
                 <NavDropdown.Item href="/tracks">
                   Recommended Tracks
                 </NavDropdown.Item>
@@ -88,9 +114,7 @@ function Header() {
                     md={3}
                     className="d-flex justify-content-md-center justify-content-sm-start"
                   >
-                    <Button variant="warning" onClick={handleSignOut}>
-                      Sign out
-                    </Button>
+                    {getLogoutButton()}
                   </Col>
                 )}
               </Row>
@@ -103,4 +127,4 @@ function Header() {
   );
 }
 
-export default Header;
+export default AppHeader;

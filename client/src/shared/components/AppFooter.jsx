@@ -4,7 +4,7 @@ import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 
-const Footer = () => {
+const AppFooter = () => {
   return (
     <footer>
       <Navbar fixed="bottom" bg="light" variant="light">
@@ -22,4 +22,4 @@ const Footer = () => {
   );
 };
 
-export default Footer;
+export default AppFooter;

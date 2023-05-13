@@ -5,7 +5,10 @@ import Col from "react-bootstrap/Col";
 import Spinner from "react-bootstrap/Spinner";
 import Alert from "react-bootstrap/Alert";
 import { useSearchParams, useNavigate } from "react-router-dom";
-import { getAccessToken, getGithubUser } from "../../services/OAuth/GitHub";
+import {
+  getAccessToken,
+  getGithubUser,
+} from "../../shared/providers/oauth/github";
 import { UserContext } from "../../App";
 
 const Redirect = () => {
